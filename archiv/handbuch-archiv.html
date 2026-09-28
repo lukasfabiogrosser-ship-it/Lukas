@@ -1,0 +1,450 @@
+<title>Handbuch-Archiv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#EEF1F5;
+  --surface:#FFFFFF;
+  --sunk:#E3E8EF;
+  --ink:#141B26;
+  --ink-2:#3C4757;
+  --muted:#697488;
+  --line:#CDD4DF;
+  --accent:#2340B8;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#E3E8FB;
+  --bad:#A8322F;
+  --bad-soft:#F9E3E2;
+  --good:#23704F;
+  --cat-1:#2340B8;
+  --cat-2:#B25E09;
+  --cat-3:#23704F;
+  --cat-4:#7A3FA8;
+  --cat-5:#0F7F8C;
+  --cat-6:#A8322F;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E131B; --surface:#161D28; --sunk:#1D2633; --ink:#E7ECF3; --ink-2:#BCC6D4; --muted:#8E9AAD; --line:#2C3747;
+    --accent:#8FA6FF; --accent-ink:#0E131B; --accent-soft:#1E2A52; --bad:#F2837F; --bad-soft:#3D1D1F; --good:#6FD0A3;
+    --cat-1:#8FA6FF; --cat-2:#F0B35A; --cat-3:#6FD0A3; --cat-4:#C9A2F0; --cat-5:#5FD0DC; --cat-6:#F2837F;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E131B; --surface:#161D28; --sunk:#1D2633; --ink:#E7ECF3; --ink-2:#BCC6D4; --muted:#8E9AAD; --line:#2C3747;
+  --accent:#8FA6FF; --accent-ink:#0E131B; --accent-soft:#1E2A52; --bad:#F2837F; --bad-soft:#3D1D1F; --good:#6FD0A3;
+  --cat-1:#8FA6FF; --cat-2:#F0B35A; --cat-3:#6FD0A3; --cat-4:#C9A2F0; --cat-5:#5FD0DC; --cat-6:#F2837F;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+@media (max-width:600px){.wrap{padding-inline:16px}}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:18px;border-bottom:2px solid var(--ink)}
+header.top .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+header.top h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.4vw,44px);letter-spacing:-.02em;line-height:1.05;margin:0}
+.counts{font-family:var(--mono);font-size:13px;color:var(--ink-2);display:flex;gap:18px;flex-wrap:wrap}
+.counts b{font-size:22px;font-weight:500;color:var(--ink);display:block;font-variant-numeric:tabular-nums}
+
+.btn{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:4px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink)}
+.btn:hover{border-color:var(--ink-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--ink-2);padding-inline:8px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;margin:22px 0 14px;align-items:center}
+@media (max-width:700px){.toolbar{grid-template-columns:1fr 1fr}.toolbar .search{grid-column:1/-1}}
+.search{position:relative}
+.search input{width:100%;padding:9px 12px 9px 34px;border:1px solid var(--line);background:var(--surface);border-radius:4px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:2}
+select{padding:8px 10px;border:1px solid var(--line);background:var(--surface);border-radius:4px}
+
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:820px){.layout{grid-template-columns:minmax(0,1fr);gap:14px}}
+nav.cats{position:sticky;top:env(safe-area-inset-top,0px);padding-top:4px}
+nav.cats h2{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 8px}
+nav.cats ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.cats button.cat{width:100%;display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:center;text-align:left;border:0;background:transparent;padding:7px 8px;border-radius:4px;cursor:pointer;color:var(--ink-2)}
+nav.cats button.cat:hover{background:var(--sunk)}
+nav.cats button.cat[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+nav.cats .dot{width:10px;height:10px;border-radius:2px;background:var(--muted)}
+nav.cats .num{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+nav.cats .manage{margin-top:10px}
+@media (max-width:820px){
+  nav.cats{position:static}
+  nav.cats ul{display:flex;flex-wrap:wrap;gap:6px}
+  nav.cats button.cat{width:auto;grid-template-columns:10px auto auto;border:1px solid var(--line);background:var(--surface)}
+}
+
+.tagbar{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--surface);padding:2px 8px;border-radius:999px;cursor:pointer;color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.list{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--cat,var(--muted));padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px}
+@media (max-width:600px){.card{grid-template-columns:minmax(0,1fr)}}
+.card .meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.card .meta .catname{color:var(--cat,var(--muted));font-weight:500}
+.card h3{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.25;margin:2px 0 4px;text-wrap:balance}
+.card p{margin:0 0 8px;color:var(--ink-2);max-width:70ch}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px}
+.card .tags span{font-family:var(--mono);font-size:11.5px;background:var(--sunk);padding:1px 7px;border-radius:3px;color:var(--ink-2)}
+.card .actions{display:flex;flex-direction:column;gap:6px;align-items:stretch;min-width:150px}
+@media (max-width:600px){.card .actions{flex-direction:row;flex-wrap:wrap;min-width:0}}
+.confirm{grid-column:1/-1;background:var(--bad-soft);border:1px solid var(--bad);padding:10px 12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px}
+
+.empty{background:var(--surface);border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted)}
+.status{font-size:13.5px;color:var(--muted);margin:10px 0 0;min-height:1.2em}
+.status.err{color:var(--bad)}
+
+dialog{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0;border-radius:6px;width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(10,14,20,.45)}
+dialog form{padding:20px;display:grid;gap:12px}
+dialog h2{font-family:var(--display);font-size:20px;margin:0}
+dialog label{display:grid;gap:4px;font-size:13px;color:var(--ink-2)}
+dialog input,dialog select,dialog textarea{padding:8px 10px;border:1px solid var(--line);background:var(--paper);border-radius:4px;width:100%}
+dialog textarea{min-height:80px;resize:vertical}
+dialog .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){dialog .row{grid-template-columns:1fr}}
+dialog .foot{display:flex;justify-content:flex-end;gap:8px;margin-top:4px}
+dialog .hint{font-size:12.5px;color:var(--muted);margin:0}
+.catrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+
+footer.help{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);max-width:80ch}
+footer.help code{font-family:var(--mono);font-size:12.5px;background:var(--sunk);padding:1px 5px;border-radius:3px;color:var(--ink-2)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="eyebrow">Wissensarchiv</p>
+      <h1>Handbuch-Archiv</h1>
+    </div>
+    <div class="counts" aria-live="polite">
+      <div><b id="n-books">–</b>Handbücher</div>
+      <div><b id="n-cats">–</b>Kategorien</div>
+      <div><b id="n-pdf">–</b>mit PDF</div>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <label class="search"><span hidden>Suchen</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Titel, Beschreibung oder Stichwort suchen" autocomplete="off">
+    </label>
+    <select id="sort" aria-label="Sortierung">
+      <option value="neu">Neueste zuerst</option>
+      <option value="alt">Älteste zuerst</option>
+      <option value="az">Titel A–Z</option>
+    </select>
+    <button class="btn primary" id="add" type="button" disabled>+ Neues Handbuch</button>
+  </div>
+
+  <div class="layout">
+    <nav class="cats" aria-label="Kategorien">
+      <h2>Kategorien</h2>
+      <ul id="catlist"></ul>
+      <div class="manage"><button class="btn ghost" id="managecats" type="button" disabled>Kategorien verwalten</button></div>
+    </nav>
+    <main>
+      <div class="tagbar" id="tagbar" aria-label="Stichwörter"></div>
+      <div class="list" id="list"><div class="empty">Archiv wird geladen …</div></div>
+      <p class="status" id="status" role="status"></p>
+    </main>
+  </div>
+
+  <footer class="help">
+    <p><strong>So kommen neue Handbücher hinein:</strong> Klicke auf „Neues Handbuch“ und trage Titel, Kategorie und den Link ein. Eine PDF kannst du direkt hochladen. Oder sag Claude in einem Chat: <code>Füge [Link] zu meinem Handbuch-Archiv hinzu, Kategorie Trading</code>. Claude kann Einträge in diesem Archiv selbst anlegen.</p>
+  </footer>
+</div>
+
+<dialog id="dlg-book" aria-labelledby="dlg-book-title">
+  <form id="f-book" method="dialog">
+    <h2 id="dlg-book-title">Neues Handbuch</h2>
+    <label for="b-titel">Titel<input id="b-titel" required maxlength="140"></label>
+    <div class="row">
+      <label for="b-kat">Kategorie<select id="b-kat"></select></label>
+      <label for="b-seiten">Seiten (optional)<input id="b-seiten" type="number" min="0" inputmode="numeric"></label>
+    </div>
+    <label for="b-link">Link zum Handbuch (z. B. claude.ai/artifact/…)<input id="b-link" type="url" placeholder="https://"></label>
+    <label for="b-tags">Stichwörter, mit Komma getrennt<input id="b-tags" placeholder="Claude, Trading, Prompts"></label>
+    <label for="b-desc">Kurzbeschreibung<textarea id="b-desc" maxlength="600"></textarea></label>
+    <label for="b-pdf">PDF anhängen (optional, max. 20 MB)<input id="b-pdf" type="file" accept="application/pdf"></label>
+    <p class="hint" id="b-pdfnow" hidden></p>
+    <p class="status err" id="b-err" hidden></p>
+    <div class="foot">
+      <button class="btn" type="button" id="b-cancel">Abbrechen</button>
+      <button class="btn primary" type="submit" id="b-save">Speichern</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-cats" aria-labelledby="dlg-cats-title">
+  <form id="f-cats" method="dialog">
+    <h2 id="dlg-cats-title">Kategorien verwalten</h2>
+    <div id="catedit" style="display:grid;gap:8px"></div>
+    <div class="catrow">
+      <input id="c-new" placeholder="Neue Kategorie, z. B. Steuern" maxlength="40" aria-label="Neue Kategorie">
+      <button class="btn primary" type="button" id="c-add">Hinzufügen</button>
+    </div>
+    <p class="hint">Kategorien mit Handbüchern lassen sich nicht löschen. Verschiebe die Handbücher zuerst.</p>
+    <p class="status err" id="c-err" hidden></p>
+    <div class="foot"><button class="btn" type="button" id="c-close">Fertig</button></div>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { books: [], cats: [], cat: 'alle', tag: null, q: '', sort: 'neu', canWrite: false, confirmId: null, editId: null };
+  var db = null, assets = null;
+  var palette = ['--cat-1','--cat-2','--cat-3','--cat-4','--cat-5','--cat-6'];
+
+  function setStatus(msg, err){ var s=$('status'); s.textContent=msg||''; s.className='status'+(err?' err':''); }
+  function el(tag, attrs, kids){
+    var n=document.createElement(tag);
+    if(attrs) Object.keys(attrs).forEach(function(k){
+      if(k==='text') n.textContent=attrs[k];
+      else if(k==='style') n.setAttribute('style',attrs[k]);
+      else if(k.slice(0,2)==='on') n.addEventListener(k.slice(2),attrs[k]);
+      else n.setAttribute(k,attrs[k]);
+    });
+    (kids||[]).forEach(function(c){ if(c) n.appendChild(c); });
+    return n;
+  }
+  function catById(id){ for(var i=0;i<state.cats.length;i++){ if(state.cats[i].id===id) return state.cats[i]; } return null; }
+  function catColor(c){ return 'var('+palette[((c && c.farbe)||0)%palette.length]+')'; }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('de-DE',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+  function safeUrl(u){ return /^https:\/\//i.test(u||'') ? u : null; }
+  function errText(e){
+    var c = e && e.code;
+    if(c==='quota_exceeded') return 'Das Archiv ist voll. Lösche alte Einträge, um Platz zu schaffen.';
+    if(c==='too_large') return 'Die PDF ist größer als 20 MB. Bitte verkleinern.';
+    if(c==='unsupported_type') return 'Nur PDF-Dateien können angehängt werden.';
+    if(c==='rate_limited' || c==='resource_exhausted') return 'Zu viele Aktionen auf einmal. Warte kurz und versuche es erneut.';
+    if(c==='invalid_argument') return 'Du hast in diesem Archiv nur Leserechte.';
+    return 'Das hat nicht geklappt. Lade die Seite neu und versuche es erneut.';
+  }
+
+  // ---------- Render ----------
+  function filtered(){
+    var q = state.q.trim().toLowerCase();
+    var out = state.books.filter(function(b){
+      if(state.cat!=='alle' && b.kategorie!==state.cat) return false;
+      if(state.tag && (b.tags||[]).indexOf(state.tag)<0) return false;
+      if(!q) return true;
+      var hay=[b.titel,b.beschreibung,(b.tags||[]).join(' '),(catById(b.kategorie)||{}).name].join(' ').toLowerCase();
+      return hay.indexOf(q)>=0;
+    });
+    out.sort(function(a,b){
+      if(state.sort==='az') return String(a.titel).localeCompare(String(b.titel),'de');
+      var d = String(a.erstellt||'').localeCompare(String(b.erstellt||''));
+      return state.sort==='alt' ? d : -d;
+    });
+    return out;
+  }
+
+  function renderCats(){
+    var ul=$('catlist'); ul.textContent='';
+    var all=[{id:'alle',name:'Alle Handbücher',n:state.books.length,color:'var(--ink-2)'}];
+    state.cats.slice().sort(function(a,b){ return (a.reihenfolge||0)-(b.reihenfolge||0); }).forEach(function(c){
+      all.push({id:c.id,name:c.name,n:state.books.filter(function(b){return b.kategorie===c.id;}).length,color:catColor(c)});
+    });
+    all.forEach(function(c){
+      ul.appendChild(el('li',null,[el('button',{type:'button','class':'cat','aria-pressed':String(state.cat===c.id),onclick:function(){ state.cat=c.id; state.tag=null; render(); }},[
+        el('span',{'class':'dot',style:'background:'+c.color}), el('span',{text:c.name}), el('span',{'class':'num',text:String(c.n)})
+      ])]));
+    });
+  }
+
+  function renderTags(){
+    var bar=$('tagbar'); bar.textContent='';
+    var pool = state.books.filter(function(b){ return state.cat==='alle' || b.kategorie===state.cat; });
+    var counts={}; pool.forEach(function(b){ (b.tags||[]).forEach(function(t){ counts[t]=(counts[t]||0)+1; }); });
+    Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a] || a.localeCompare(b,'de'); }).slice(0,24).forEach(function(t){
+      bar.appendChild(el('button',{type:'button','class':'chip','aria-pressed':String(state.tag===t),onclick:function(){ state.tag = state.tag===t?null:t; render(); }},[document.createTextNode('#'+t)]));
+    });
+  }
+
+  function renderList(){
+    var list=$('list'); list.textContent='';
+    var items=filtered();
+    if(!db){ list.appendChild(el('div',{'class':'empty',text:'Das Archiv ist in dieser Ansicht nicht verfügbar. Öffne die Seite auf claude.ai, während du angemeldet bist.'})); return; }
+    if(!items.length){
+      list.appendChild(el('div',{'class':'empty',text: state.books.length ? 'Keine Handbücher passen zu deiner Auswahl.' : 'Noch keine Handbücher. Lege mit „Neues Handbuch“ das erste an.'}));
+      return;
+    }
+    items.forEach(function(b){
+      var c=catById(b.kategorie);
+      var link=safeUrl(b.link);
+      var actions=[];
+      if(link) actions.push(el('a',{'class':'btn primary',href:link,target:'_blank',rel:'noopener'},[document.createTextNode('Öffnen')]));
+      if(b.pdfId) actions.push(el('a',{'class':'btn',href:'/_blob/'+b.pdfId,target:'_blank',rel:'noopener'},[document.createTextNode('PDF ansehen')]));
+      if(state.canWrite){
+        actions.push(el('button',{'class':'btn',type:'button',onclick:function(){ openBook(b); }},[document.createTextNode('Bearbeiten')]));
+        actions.push(el('button',{'class':'btn ghost',type:'button',onclick:function(){ state.confirmId=b.id; renderList(); }},[document.createTextNode('Löschen')]));
+      }
+      var meta=[el('span',{'class':'catname',text:c?c.name:'Ohne Kategorie'})];
+      if(b.erstellt) meta.push(el('span',{text:fmtDate(b.erstellt)}));
+      if(b.seiten) meta.push(el('span',{text:b.seiten+' Seiten'}));
+      if(b.pdfId) meta.push(el('span',{text:'PDF'}));
+      var card=el('article',{'class':'card',style:'--cat:'+catColor(c)},[
+        el('div',null,[
+          el('div',{'class':'meta'},meta),
+          el('h3',{text:b.titel||'Ohne Titel'}),
+          b.beschreibung ? el('p',{text:b.beschreibung}) : null,
+          (b.tags&&b.tags.length) ? el('div',{'class':'tags'},b.tags.map(function(t){ return el('span',{text:'#'+t}); })) : null
+        ]),
+        el('div',{'class':'actions'},actions)
+      ]);
+      if(state.confirmId===b.id){
+        card.appendChild(el('div',{'class':'confirm'},[
+          el('span',{text: b.pdfId ? '„'+b.titel+'“ und die angehängte PDF endgültig löschen?' : '„'+b.titel+'“ endgültig aus dem Archiv löschen?'}),
+          el('button',{'class':'btn danger',type:'button',onclick:function(){ removeBook(b); }},[document.createTextNode('Ja, löschen')]),
+          el('button',{'class':'btn',type:'button',onclick:function(){ state.confirmId=null; renderList(); }},[document.createTextNode('Abbrechen')])
+        ]));
+      }
+      list.appendChild(card);
+    });
+  }
+
+  function render(){
+    $('n-books').textContent=String(state.books.length);
+    $('n-cats').textContent=String(state.cats.length);
+    $('n-pdf').textContent=String(state.books.filter(function(b){return b.pdfId;}).length);
+    renderCats(); renderTags(); renderList();
+    $('add').disabled=!state.canWrite; $('managecats').disabled=!state.canWrite;
+  }
+
+  // ---------- Book dialog ----------
+  function fillCatSelect(sel, value){
+    sel.textContent='';
+    state.cats.slice().sort(function(a,b){ return (a.reihenfolge||0)-(b.reihenfolge||0); }).forEach(function(c){
+      var o=el('option',{value:c.id,text:c.name}); if(c.id===value) o.selected=true; sel.appendChild(o);
+    });
+  }
+  function openBook(b){
+    state.editId = b ? b.id : null;
+    $('dlg-book-title').textContent = b ? 'Handbuch bearbeiten' : 'Neues Handbuch';
+    fillCatSelect($('b-kat'), b ? b.kategorie : (state.cat!=='alle'?state.cat:(state.cats[0]||{}).id));
+    $('b-titel').value = b ? (b.titel||'') : '';
+    $('b-seiten').value = b && b.seiten ? b.seiten : '';
+    $('b-link').value = b ? (b.link||'') : '';
+    $('b-tags').value = b ? (b.tags||[]).join(', ') : '';
+    $('b-desc').value = b ? (b.beschreibung||'') : '';
+    $('b-pdf').value='';
+    $('b-pdf').parentElement.hidden = !assets;
+    var now=$('b-pdfnow'); now.hidden = !(b && b.pdfId); now.textContent = 'Angehängt: '+((b&&b.pdfName)||'PDF')+'. Eine neue Datei ersetzt sie.';
+    $('b-err').hidden=true;
+    if(!state.cats.length){ $('b-err').textContent='Lege zuerst eine Kategorie an.'; $('b-err').hidden=false; }
+    try{ $('dlg-book').showModal(); }catch(e){ $('dlg-book').setAttribute('open',''); }
+  }
+  $('b-cancel').addEventListener('click',function(){ $('dlg-book').close(); });
+  $('f-book').addEventListener('submit', async function(ev){
+    ev.preventDefault();
+    var titel=$('b-titel').value.trim(); if(!titel){ $('b-titel').focus(); return; }
+    var link=$('b-link').value.trim();
+    if(link && !safeUrl(link)){ $('b-err').textContent='Der Link muss mit https:// beginnen.'; $('b-err').hidden=false; return; }
+    var kat=$('b-kat').value; if(!kat){ $('b-err').textContent='Wähle eine Kategorie.'; $('b-err').hidden=false; return; }
+    var tags=$('b-tags').value.split(',').map(function(t){return t.trim();}).filter(Boolean).filter(function(t,i,a){return a.indexOf(t)===i;}).slice(0,12);
+    var seiten=parseInt($('b-seiten').value,10);
+    var old = state.editId ? state.books.filter(function(b){return b.id===state.editId;})[0] : null;
+    var body={ titel:titel, kategorie:kat, link:link, tags:tags, beschreibung:$('b-desc').value.trim(),
+      seiten: isFinite(seiten)&&seiten>0 ? seiten : null,
+      pdfId: old ? (old.pdfId||null) : null, pdfName: old ? (old.pdfName||null) : null,
+      erstellt: old ? (old.erstellt||new Date().toISOString()) : new Date().toISOString(),
+      aktualisiert: new Date().toISOString() };
+    var save=$('b-save'); save.disabled=true; save.textContent='Speichert …';
+    try{
+      var file=$('b-pdf').files && $('b-pdf').files[0];
+      var replaced=null;
+      if(file && assets){
+        var up=await assets.upload(file,{type:'application/pdf'});
+        replaced=body.pdfId; body.pdfId=up.id; body.pdfName=file.name;
+      }
+      var ref = state.editId ? db.collection('handbuecher').doc(state.editId) : db.collection('handbuecher').doc();
+      await ref.set(body);
+      if(replaced && assets){ try{ await assets.delete(replaced); }catch(e){} }
+      $('dlg-book').close(); setStatus(old ? 'Änderungen gespeichert.' : '„'+titel+'“ wurde ins Archiv aufgenommen.');
+    }catch(e){
+      $('b-err').textContent=errText(e); $('b-err').hidden=false;
+    }finally{ save.disabled=false; save.textContent='Speichern'; }
+  });
+
+  async function removeBook(b){
+    try{
+      await db.collection('handbuecher').doc(b.id).delete();
+      if(b.pdfId && assets){ try{ await assets.delete(b.pdfId); }catch(e){} }
+      state.confirmId=null; setStatus('„'+b.titel+'“ wurde gelöscht.');
+    }catch(e){ setStatus(errText(e), true); }
+  }
+
+  // ---------- Category dialog ----------
+  function renderCatEdit(){
+    var box=$('catedit'); box.textContent='';
+    state.cats.slice().sort(function(a,b){ return (a.reihenfolge||0)-(b.reihenfolge||0); }).forEach(function(c){
+      var used=state.books.filter(function(b){return b.kategorie===c.id;}).length;
+      var inp=el('input',{value:c.name,maxlength:'40','aria-label':'Name der Kategorie '+c.name});
+      inp.addEventListener('change', async function(){
+        var v=inp.value.trim(); if(!v || v===c.name){ inp.value=c.name; return; }
+        try{ await db.collection('kategorien').doc(c.id).update({name:v}); }catch(e){ $('c-err').textContent=errText(e); $('c-err').hidden=false; }
+      });
+      var del=el('button',{'class':'btn ghost',type:'button',title:used?'Enthält '+used+' Handbücher':'Löschen',onclick:async function(){
+        if(used) return;
+        try{ await db.collection('kategorien').doc(c.id).delete(); if(state.cat===c.id) state.cat='alle'; }catch(e){ $('c-err').textContent=errText(e); $('c-err').hidden=false; }
+      }},[document.createTextNode(used?used+' Einträge':'Löschen')]);
+      if(used) del.disabled=true;
+      box.appendChild(el('div',{'class':'catrow'},[inp,del]));
+    });
+  }
+  $('managecats').addEventListener('click',function(){ $('c-err').hidden=true; renderCatEdit(); try{ $('dlg-cats').showModal(); }catch(e){ $('dlg-cats').setAttribute('open',''); } });
+  $('c-close').addEventListener('click',function(){ $('dlg-cats').close(); });
+  $('c-add').addEventListener('click', async function(){
+    var v=$('c-new').value.trim(); if(!v) return;
+    var max=state.cats.reduce(function(m,c){ return Math.max(m,c.reihenfolge||0); },0);
+    var used=state.cats.map(function(c){return c.farbe||0;});
+    var farbe=0; for(var i=0;i<palette.length;i++){ if(used.indexOf(i)<0){ farbe=i; break; } farbe=state.cats.length%palette.length; }
+    try{ await db.collection('kategorien').doc().set({name:v,reihenfolge:max+1,farbe:farbe}); $('c-new').value=''; }
+    catch(e){ $('c-err').textContent=errText(e); $('c-err').hidden=false; }
+  });
+  $('c-new').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); $('c-add').click(); } });
+
+  // ---------- Toolbar ----------
+  var qTimer=null;
+  $('q').addEventListener('input',function(){ clearTimeout(qTimer); qTimer=setTimeout(function(){ state.q=$('q').value; renderList(); },120); });
+  $('sort').addEventListener('change',function(){ state.sort=$('sort').value; renderList(); });
+  $('add').addEventListener('click',function(){ openBook(null); });
+
+  // ---------- Connect ----------
+  render();
+  (async function(){
+    var c = window.claude;
+    if(!c || !c.use){ render(); return; }
+    db = await c.use('db');
+    if(!db){ render(); return; }
+    var user = await c.use('user');
+    var can = user && user.can ? user.can('data.write') : null;
+    try{ can = await can; }catch(e){ can=null; }
+    state.canWrite = can!==false;
+    if(state.canWrite){ assets = await c.use('assets'); }
+    render();
+    db.collection('kategorien').onSnapshot(function(snap){
+      state.cats = snap.docs.map(function(d){ var x=Object.assign({},d.data()); x.id=d.id; return x; });
+      render(); if($('dlg-cats').open) renderCatEdit();
+    }, function(){ setStatus('Die Verbindung zum Archiv wurde unterbrochen. Lade die Seite neu.', true); });
+    db.collection('handbuecher').onSnapshot(function(snap){
+      state.books = snap.docs.map(function(d){ var x=Object.assign({},d.data()); x.id=d.id; return x; });
+      render();
+    }, function(){ setStatus('Die Verbindung zum Archiv wurde unterbrochen. Lade die Seite neu.', true); });
+  })();
+})();
+</script>
