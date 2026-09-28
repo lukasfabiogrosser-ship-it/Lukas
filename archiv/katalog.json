@@ -1,0 +1,52 @@
+{
+  "beschreibung": "Katalog des Handbuch-Archivs. Spiegelt die Einträge der Archiv-Seite auf claude.ai und zeigt, wo die Dateien im Repository liegen.",
+  "archivSeite": "https://claude.ai/artifact/V8Qvu8czVE8KtzttobZZwu",
+  "stand": "2026-09-28",
+  "kategorien": [
+    { "id": "ki", "name": "KI & Claude", "ordner": "handbuecher/ki-und-claude" },
+    { "id": "trading", "name": "Trading & Finanzen", "ordner": "handbuecher/trading-und-finanzen" },
+    { "id": "unternehmen", "name": "Unternehmen", "ordner": "handbuecher/unternehmen" },
+    { "id": "sonstiges", "name": "Sonstiges", "ordner": "handbuecher/sonstiges" }
+  ],
+  "handbuecher": [
+    {
+      "id": "ki-handbuch-trader-gruender",
+      "band": 1,
+      "titel": "KI als Werkzeug für Trader und Gründer",
+      "kategorie": "ki",
+      "seiten": 45,
+      "tags": ["Claude", "Prompting", "Agenten", "Trading", "Unternehmen", "Sicherheit"],
+      "beschreibung": "Praxis-Handbuch in 22 Kapiteln: KI verstehen, Claude richtig bedienen, gute Prompts schreiben, Agenten sicher einsetzen, KI für Trading, Memecoins und den Aufbau eines Unternehmens. Mit Prompt-Bibliothek, Checklisten und Quellen.",
+      "online": "https://claude.ai/artifact/9mFC2J9frkNSt6GaEif8yC",
+      "html": "handbuecher/ki-und-claude/band-1-ki-als-werkzeug.html",
+      "pdf": "handbuecher/ki-und-claude/band-1-ki-als-werkzeug.pdf",
+      "erstellt": "2026-09-28"
+    },
+    {
+      "id": "claude-aufruesten",
+      "band": 2,
+      "titel": "Claude aufrüsten: Daten, Gedächtnis, Echtzeit",
+      "kategorie": "ki",
+      "seiten": 23,
+      "tags": ["Claude", "Connectors", "Echtzeit", "Gedächtnis", "Routinen", "Automatisierung"],
+      "beschreibung": "Was Claude braucht, um Daten schneller aufzunehmen, mit Feedback gezielter zu werden und aktuelle Ereignisse so schnell wie möglich zu erfassen. Mit Connector-Einkaufsliste, Bauplan für ein Echtzeit-System und 30-Tage-Ausbauplan.",
+      "online": "https://claude.ai/artifact/3VnPkESKKjszwXXsc83769",
+      "html": "handbuecher/ki-und-claude/band-2-claude-aufruesten.html",
+      "pdf": "handbuecher/ki-und-claude/band-2-claude-aufruesten.pdf",
+      "erstellt": "2026-09-28"
+    },
+    {
+      "id": "github-mit-claude",
+      "band": 3,
+      "titel": "GitHub mit Claude",
+      "kategorie": "ki",
+      "seiten": 8,
+      "tags": ["Claude", "GitHub", "Git", "Pull Requests", "Automatisierung", "Skizze"],
+      "beschreibung": "Was GitHub ist, eine Skizze aller Bausteine rund um ein Repository, drei Wege, Claude mit GitHub zu verbinden, und ein Beispiel Schritt für Schritt aus dem eigenen Repo.",
+      "online": "https://claude.ai/artifact/Jmmjfx6Q7EVpnQcJshwmZG",
+      "html": "handbuecher/ki-und-claude/band-3-github-mit-claude.html",
+      "pdf": "handbuecher/ki-und-claude/band-3-github-mit-claude.pdf",
+      "erstellt": "2026-09-28"
+    }
+  ]
+}
